@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.App-locale-div {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  padding: 5px;
+  color: #cccccc;
+}
+
+.App-locale-span {
+  cursor: pointer;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.App-locale-span:hover {
+  color: white;
+}

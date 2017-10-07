@@ -1,0 +1,25 @@
+.Menu {
+  padding: 10px 20px;
+  background-color: transparent;
+  position: fixed;
+  right: 0;
+}
+
+.MenuItem {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.MenuItem-link {
+  color: #cccccc;
+  cursor: pointer;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.MenuItem-link:hover {
+  color: #ffffff;
+}
