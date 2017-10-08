@@ -1,9 +1,11 @@
 {
-  "name": "martin-web",
+  "name": "martin-hajny-web",
+  "homepage": "https://HeinzHinek.github.io/martin-hajny-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "browser-locale": "^1.0.3",
+    "gh-pages": "^1.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -11,6 +13,8 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

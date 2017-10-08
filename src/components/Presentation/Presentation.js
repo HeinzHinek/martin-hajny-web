@@ -2,23 +2,36 @@ import React, { Component } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 
 import './Presentation.css';
-import HouseImg from '../../static/house_1.jpg';
-import HouseImg2 from '../../static/house_1_0.jpg';
+import scenes from '../../static/scenes.json';
 
+
+// FIXME extract this
+const CURR_SCENE = 'scene1';
+
+const loadSceneImages = () => {
+  const imageMap = {};
+  const partsCount = Object.keys(scenes[CURR_SCENE].parts).length;
+  const combinationCount = partsCount ** 2;
+  for (let idx = 0; idx < combinationCount; idx += 1) {
+    // eslint-disable-next-line
+    imageMap[idx] = require(`../../static/scenes/${CURR_SCENE}/state_${idx}.jpg`)
+  }
+  return imageMap;
+};
 
 class Presentation extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      changed: false,
+      sceneState: 0,
+      sceneImages: loadSceneImages(),
       width: '0',
       height: '0',
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.change = this.change.bind(this);
+    this.change = this.handleScenePartClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,26 +45,32 @@ class Presentation extends Component {
     this.setState({ width, height });
   }
 
-  change() {
-    const { changed } = this.state;
-    this.setState({ changed: !changed });
+  handleScenePartClick(partId) {
+    const { sceneState } = this.state;
+
+    // eslint-disable-next-line
+    const newValue = parseInt(sceneState) ^ parseInt(partId);
+
+    this.setState({ sceneState: newValue });
     this.updateWindowDimensions();
   }
 
   render() {
-    /* 485,245 532,145 914,199 914,428 845,436 506,428 505,342 */
-    const ratios = [
-      [0.384, 0.32798],
-      [0.42122, 0.1941],
-      [0.72367, 0.2664],
-      [0.72367, 0.57296],
-      [0.669, 0.58367],
-      [0.40063, 0.57296],
-      [0.39984, 0.457831],
-    ];
+    const { width, height, sceneImages, sceneState } = this.state;
 
-    const { width, height } = this.state;
-    const pointStr = ratios.map((item) => { return `${width * item[0]},${height * item[1]}`; }).join(' ');
+    const sceneImage = sceneImages[sceneState];
+
+    const { parts } = scenes[CURR_SCENE];
+    const polygons = Object.keys(parts).map((key) => {
+      const pointStr = parts[key].points.map((item) => { return `${width * item[0]},${height * item[1]}`; }).join(' ');
+      return (
+        <polygon
+          key={`scenePart${key}`}
+          points={pointStr}
+          onClick={() => { this.handleScenePartClick(key); }}
+        />
+      );
+    });
 
     return (
       <div className="Presentation">
@@ -62,13 +81,13 @@ class Presentation extends Component {
           ref={node => this.mainImage = node}
           onLoad={this.updateWindowDimensions}
           className="Presentation-img"
-          src={this.state.changed ? HouseImg2 : HouseImg}
+          src={sceneImage}
           alt=""
         />
 
-        <div className="testArea noselect">
+        <div className="Presentation-scene-parts-div noselect">
           <svg width={width} height={height}>
-            {<polygon points={pointStr} onClick={this.change} />}
+            {polygons}
           </svg>
         </div>
       </div>

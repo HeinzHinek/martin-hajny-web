@@ -2,13 +2,13 @@
   width: 100%;
 }
 
-.testArea {
+.Presentation-scene-parts-div {
   position: absolute;
   top: 0px;
   left: 0px;
 }
 
-.testArea svg polygon {
+.Presentation-scene-parts-div svg polygon {
   cursor: pointer;
   fill: white;
   opacity: 0;
@@ -19,6 +19,6 @@
   transition: all 0.5s ease;
 }
 
-.testArea svg polygon:hover {
+.Presentation-scene-parts-div svg polygon:hover {
   opacity: 0.2;
 }
