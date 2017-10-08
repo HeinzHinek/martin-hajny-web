@@ -1,8 +1,10 @@
 {
-  "main.css": "static/css/main.f87e6930.css",
-  "main.css.map": "static/css/main.f87e6930.css.map",
-  "main.js": "static/js/main.bf16c4fa.js",
-  "main.js.map": "static/js/main.bf16c4fa.js.map",
-  "static\\media\\house_1.jpg": "static/media/house_1.ba8fc607.jpg",
-  "static\\media\\house_1_0.jpg": "static/media/house_1_0.69919601.jpg"
+  "main.css": "static/css/main.f0714b18.css",
+  "main.css.map": "static/css/main.f0714b18.css.map",
+  "main.js": "static/js/main.a5243997.js",
+  "main.js.map": "static/js/main.a5243997.js.map",
+  "static\\media\\state_0.jpg": "static/media/state_0.69919601.jpg",
+  "static\\media\\state_1.jpg": "static/media/state_1.ba8fc607.jpg",
+  "static\\media\\state_2.jpg": "static/media/state_2.4b09bcdd.jpg",
+  "static\\media\\state_3.jpg": "static/media/state_3.7e7a9e97.jpg"
 }
