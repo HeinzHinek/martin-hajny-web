@@ -1,3 +1,24 @@
 .Presentation-img {
   width: 100%;
 }
+
+.testArea {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.testArea svg polygon {
+  cursor: pointer;
+  fill: white;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.testArea svg polygon:hover {
+  opacity: 0.2;
+}

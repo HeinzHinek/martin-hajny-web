@@ -31,10 +31,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Menu menuClickHandler={this.handleMenuClick} locale={locale} />
         <Infobox item={currentItem} locale={locale} />
         <Presentation />
-        <div className="App-locale-div">
+        <Menu menuClickHandler={this.handleMenuClick} locale={locale} />
+        <div className="App-locale-div noselect">
           <span
             aria-hidden
             className="App-locale-span"

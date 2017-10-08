@@ -25,11 +25,6 @@ module.exports = {
         "module": true
     },
     "extends": "airbnb",
-    "ecmaFeatures": {
-        "jsx": true,
-        "experimentalObjectRestSpread": true,
-        "modules": true
-    },
     "plugins": [
         "react"
     ]
