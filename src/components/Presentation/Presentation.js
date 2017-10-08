@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactResizeDetector from 'react-resize-detector';
+
 import './Presentation.css';
 import HouseImg from '../../static/house_1.jpg';
 import HouseImg2 from '../../static/house_1_0.jpg';
@@ -21,24 +23,19 @@ class Presentation extends Component {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   updateWindowDimensions() {
+    if (this.mainImage === undefined) return;
     const height = this.mainImage.clientHeight;
     const width = this.mainImage.clientWidth;
     this.setState({ width, height });
   }
 
   change() {
-    const foo = this.state.changed;
-    this.setState({
-      changed: !foo,
-    });
+    const { changed } = this.state;
+    this.setState({ changed: !changed });
+    this.updateWindowDimensions();
   }
 
   render() {
@@ -58,6 +55,7 @@ class Presentation extends Component {
 
     return (
       <div className="Presentation">
+        <ReactResizeDetector handleWidth handleHeight onResize={this.updateWindowDimensions} />
 
         <img
           // eslint-disable-next-line
@@ -67,6 +65,7 @@ class Presentation extends Component {
           src={this.state.changed ? HouseImg2 : HouseImg}
           alt=""
         />
+
         <div className="testArea noselect">
           <svg width={width} height={height}>
             {<polygon points={pointStr} onClick={this.change} />}

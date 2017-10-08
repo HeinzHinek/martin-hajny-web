@@ -31,9 +31,9 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Infobox item={currentItem} locale={locale} />
         <Presentation />
         <Menu menuClickHandler={this.handleMenuClick} locale={locale} />
+        <Infobox item={currentItem} locale={locale} />
         <div className="App-locale-div noselect">
           <span
             aria-hidden
