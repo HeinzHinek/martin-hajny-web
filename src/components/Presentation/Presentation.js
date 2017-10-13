@@ -56,7 +56,9 @@ class Presentation extends Component {
   }
 
   render() {
-    const { width, height, sceneImages, sceneState } = this.state;
+    const {
+      width, height, sceneImages, sceneState,
+    } = this.state;
 
     const sceneImage = sceneImages[sceneState];
 

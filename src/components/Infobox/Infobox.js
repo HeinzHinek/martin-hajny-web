@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import texts from '../../static/texts.json';
 import './Infobox.css';
 
 class Infobox extends React.Component {
   render() {
+    const { selectedItem, locale } = this.props;
     const getText = () => {
-      const { item, locale } = this.props;
-      if (texts[item] === undefined || texts[item].infobox === undefined) return null;
-      if (texts[item].infobox[locale] === undefined) return texts[item].infobox.en;
-      return texts[item].infobox[locale];
+      if (texts[selectedItem] === undefined || texts[selectedItem].infobox === undefined) return null;
+      if (texts[selectedItem].infobox[locale] === undefined) return texts[selectedItem].infobox.en;
+      return texts[selectedItem].infobox[locale];
     };
 
     const text = getText();
@@ -25,13 +26,19 @@ class Infobox extends React.Component {
 }
 
 Infobox.propTypes = {
-  item: PropTypes.string,
+  selectedItem: PropTypes.string,
   locale: PropTypes.string,
 };
 
 Infobox.defaultProps = {
-  item: '',
+  selectedItem: '',
   locale: 'en',
 };
 
-export default Infobox;
+const mapStateToProps = (state) => {
+  const { locale } = state.app;
+  const { selectedItem } = state.menu;
+  return { locale, selectedItem };
+};
+
+export default connect(mapStateToProps)(Infobox);

@@ -1,7 +1,12 @@
+@font-face {
+  font-family: 'GeosansLightCE';
+  src: local('GeosansLightCE'), url(./static/GeosansLightCE.ttf);
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Pontano Sans', sans-serif;
+  font-family: 'GeosansLightCE', sans-serif;
 }
 
 .noselect {

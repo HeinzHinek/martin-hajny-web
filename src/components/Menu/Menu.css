@@ -11,6 +11,10 @@
   padding: 10px 20px;
 }
 
+.MenuItem-selected {
+  border-bottom: 1px solid #aaaaaa;
+}
+
 .MenuItem-link {
   color: #cccccc;
   cursor: pointer;

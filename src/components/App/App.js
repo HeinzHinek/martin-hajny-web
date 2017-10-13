@@ -1,51 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { changeLocale } from './actions';
 import Menu from '../Menu';
 import Infobox from '../Infobox';
 import Presentation from '../Presentation';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      locale: this.props.locale,
-      currentItem: null,
-    };
-
-    this.handleMenuClick = this.handleMenuClick.bind(this);
-  }
-
-  handleMenuClick(name) {
-    this.setState({ currentItem: name });
-  }
-
-  handleLocaleClick(locale) {
-    this.setState({ locale });
-  }
-
   render() {
-    const { currentItem, locale } = this.state;
+    const { onChangeLocale } = this.props;
 
     return (
       <div className="App">
         <Presentation />
-        <Menu menuClickHandler={this.handleMenuClick} locale={locale} />
-        <Infobox item={currentItem} locale={locale} />
+        <Menu />
+        <Infobox />
+
+        <div className="App-title">
+          Martin Hajný
+        </div>
+
         <div className="App-locale-div noselect">
           <span
             aria-hidden
             className="App-locale-span"
-            onClick={() => { this.handleLocaleClick('en'); }}
+            onClick={() => { onChangeLocale('en'); }}
           >en
           </span>
           <span>&nbsp;/&nbsp;</span>
           <span
             aria-hidden
             className="App-locale-span"
-            onClick={() => { this.handleLocaleClick('cs'); }}
+            onClick={() => { onChangeLocale('cs'); }}
           >cs
           </span>
         </div>
@@ -55,11 +43,11 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  locale: PropTypes.string,
+  onChangeLocale: PropTypes.func.isRequired,
 };
 
-App.defaultProps = {
-  locale: 'en',
-};
+const mapStateToProps = state => ({
+  locale: state.app.locale,
+});
 
-export default App;
+export default connect(mapStateToProps, { onChangeLocale: changeLocale })(App);

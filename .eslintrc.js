@@ -11,7 +11,7 @@ module.exports = {
         "react/no-danger": 0,
         "no-unused-expressions": 0,
         "react/prefer-stateless-function": 0,
-        "arrow-body-style": ["error", "always"]
+        "arrow-body-style": ["error", "as-needed"]
     },
     "env": {
         "es6": true,

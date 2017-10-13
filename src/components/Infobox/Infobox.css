@@ -1,13 +1,10 @@
 .Infobox {
   margin-right: 30px;
-  padding: 10px 20px;
+  padding: 10px;
   position: fixed;
   right: 0;
   top: 50px;
-  width: 200px;
-  height: 120px;
-  text-align: left;
+  text-align: right;
   color: #cccccc;
   background-color: transparent;
-  border: 1px solid #cccccc;
 }

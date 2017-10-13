@@ -2,10 +2,19 @@
   text-align: center;
 }
 
-.App-locale-div {
+.App-title {
   position: fixed;
   left: 0px;
   top: 0px;
+  padding: 10px;
+  color: #cccccc;
+  font-size: 1.2em;
+}
+
+.App-locale-div {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
   padding: 5px;
   color: #cccccc;
 }
