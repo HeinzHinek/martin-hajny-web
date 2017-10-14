@@ -1,38 +1,26 @@
 import React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 
-import scenes from '../../static/scenes.json';
+import Scene from './scene';
 import './Presentation.css';
 
 
 // FIXME extract this
-const CURR_SCENE = 'scene1';
-
-const loadSceneImages = () => {
-  const imageMap = {};
-  const partsCount = Object.keys(scenes[CURR_SCENE].parts).length;
-  const combinationCount = partsCount ** 2;
-  for (let idx = 0; idx < combinationCount; idx += 1) {
-    // eslint-disable-next-line
-    imageMap[idx] = require(`../../static/scenes/${CURR_SCENE}/state_${idx}.jpg`)
-  }
-  return imageMap;
-};
+const CURR_SCENE = '1';
 
 class Presentation extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sceneState: 0,
-      sceneImages: loadSceneImages(),
+      scene: new Scene(CURR_SCENE),
       left: 0,
       width: 0,
       height: 0,
     };
 
     this.updateImageDimensions = this.updateImageDimensions.bind(this);
-    this.change = this.handleScenePartClick.bind(this);
+    this.handleScenePartClick = this.handleScenePartClick.bind(this);
   }
 
   componentDidMount() {
@@ -49,42 +37,28 @@ class Presentation extends React.Component {
     const width = imageWidth;
     const height = imageHeight;
 
-    console.log(imageWidth)
-    console.log(width, height)
-
     this.setState({ left, width, height });
   }
 
-  handleScenePartClick(partId) {
-    const { sceneState } = this.state;
-
-    // eslint-disable-next-line
-    const newValue = parseInt(sceneState) ^ parseInt(partId);
-
-    this.setState({ sceneState: newValue });
-    this.updateImageDimensions();
+  handleScenePartClick(part) {
+    part.toggleVisibility();
+    this.forceUpdate();
   }
 
   render() {
     const {
-      left, width, height, sceneImages, sceneState,
+      scene, left, width, height,
     } = this.state;
+    const sceneImage = scene.getSceneImage();
+    const activeParts = scene.getActiveParts();
 
-    console.log(`Width is ${width}`);
-
-    const sceneImage = sceneImages[sceneState];
-
-    const { parts } = scenes[CURR_SCENE];
-    const polygons = Object.keys(parts).map((key) => {
-      const pointStr = parts[key].points.map(item => `${width * item[0]},${height * item[1]}`).join(' ');
-      return (
-        <polygon
-          key={`scenePart${key}`}
-          points={pointStr}
-          onClick={() => { this.handleScenePartClick(key); }}
-        />
-      );
-    });
+    const polygons = activeParts.map(part => (
+      <polygon
+        key={`scenePart${part.id}`}
+        points={part.getPointString(width, height)}
+        onClick={() => { this.handleScenePartClick(part); }}
+      />
+    ));
 
     return (
       <div className="Presentation">

@@ -6,6 +6,7 @@ import Presentation from '../Presentation';
 import LocaleSelector from '../LocaleSelector';
 import './App.css';
 
+
 class App extends React.Component {
   render() {
     return (
