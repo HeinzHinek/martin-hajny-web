@@ -1,11 +1,13 @@
 .Presentation-img {
-  width: 100%;
+  width: auto;
+  height: 101vh;
 }
 
 .Presentation-scene-parts-div {
   position: absolute;
   top: 0px;
   left: 0px;
+  height: 100vh;
 }
 
 .Presentation-scene-parts-div svg polygon {

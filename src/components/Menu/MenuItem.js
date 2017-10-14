@@ -39,7 +39,7 @@ MenuItem.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  locale: state.app.locale,
+  locale: state.localeSelector.locale,
   selectedItem: state.menu.selectedItem,
 });
 

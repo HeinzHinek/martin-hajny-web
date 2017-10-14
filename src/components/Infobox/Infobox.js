@@ -36,7 +36,7 @@ Infobox.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-  const { locale } = state.app;
+  const { locale } = state.localeSelector;
   const { selectedItem } = state.menu;
   return { locale, selectedItem };
 };
