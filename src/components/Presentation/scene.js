@@ -8,7 +8,6 @@ class ScenePart {
 
     this.visible = false;
     this.addressString = this.parseAddressString();
-    this.imageFileName = `state_${this.addressString}.jpg`;
 
     this.polygon = scenes[this.sceneName].parts[this.id].polygon;
     this.children = [];

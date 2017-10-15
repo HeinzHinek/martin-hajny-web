@@ -55,6 +55,7 @@ class Presentation extends React.Component {
     const polygons = activeParts.map(part => (
       <polygon
         key={`scenePart${part.id}`}
+        className={`Presentation-polygon ${part.visible ? '' : 'Presentation-polygon-glow'}`}
         points={part.getPointString(width, height)}
         onClick={() => { this.handleScenePartClick(part); }}
       />

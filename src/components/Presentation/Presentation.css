@@ -10,7 +10,21 @@
   height: 100vh;
 }
 
-.Presentation-scene-parts-div svg polygon {
+@keyframes glow {
+  from {
+    opacity: 0.2;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.Presentation-polygon {
   cursor: pointer;
   fill: white;
   opacity: 0;
@@ -21,6 +35,15 @@
   transition: all 0.5s ease;
 }
 
-.Presentation-scene-parts-div svg polygon:hover {
+.Presentation-polygon-glow {
+  animation-duration: 2s;
+  animation-name: glow;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.Presentation-polygon:hover {
+  animation: 0;
+  -webkit-animation: 0;
   opacity: 0.2;
 }
